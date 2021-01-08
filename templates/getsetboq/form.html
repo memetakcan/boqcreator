@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+    {% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <h1>Create An Object</h1>
+                    {{ form|crispy }}
+                    <input class="btn btn-primary"type="submit" value= "Ekle">
+                </form>
+                </div>
+            </div>
+    </div>
+
+    {% endblock %}

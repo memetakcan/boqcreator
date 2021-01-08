@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="bi bi-person-circle" fill="currentColor" viewBox="0 0 16 16" width="16" height="16">
+  <path d="M 13.468 12.37 C 12.758 11.226 11.195 10 8 10 s -4.757 1.225 -5.468 2.37 A 6.987 6.987 0 0 0 8 15 a 6.987 6.987 0 0 0 5.468 -2.63 Z"/>
+  <path fill-rule="evenodd" d="M 8 9 a 3 3 0 1 0 0 -6 a 3 3 0 0 0 0 6 Z"/>
+  <path fill-rule="evenodd" d="M 8 1 a 7 7 0 1 0 0 14 A 7 7 0 0 0 8 1 Z M 0 8 a 8 8 0 1 1 16 0 A 8 8 0 0 1 0 8 Z"/>
+</svg>

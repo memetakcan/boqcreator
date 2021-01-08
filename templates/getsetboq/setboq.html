@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+    {% block body %}
+
+
+    {% for i in r %}
+        {{ i.boqcodes }}<br>
+        {{ i.category }}<br>
+        {{ i.material }}<br>
+        {{ i.id }}<br>
+
+    {% endfor %}
+
+    {% endblock %}

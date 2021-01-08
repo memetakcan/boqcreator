@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+    {% block body %}
+        <div class="d-flex flex-wrap col-sm-12">
+
+                <div class="card" style="max-width: 20rem;">
+                    {% if i.image %}
+                        <img class="card-img-top" src={{ i.image.url }} alt="Card image cap">
+                    {% else %}
+                        <img class="card-img-top" src="/media/fallback.png" alt="Card image cap">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ i.boqcodes }}</h5>
+                        <p class="card-text">{{ i.category|linebreaks }}</p>
+                        <p class="card-text">{{ i.material|linebreaks }}</p>
+                        <p class="card-text">{{ i.objecttype|linebreaks }}</p>
+                        <p class="card-text">{{ i.boqdescription|linebreaks }}</p>
+                        <h6> {{ i.user.get_full_name }}</h6>
+                        <a href="{{i.get_update_url}}" class="btn btn-dark btn-block" role="button">Update</a>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#exampleModalCenter">
+                            Delete
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header"><h5 class="modal-title text-dark" id="exampleModalLongTitle">Delete BIM OBject</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                    <div class="modal-body"><p style="color:black;"><font size="4">Are You Sure?</font></p>
+                                    </div>
+                                    <div class="modal-footer"><button type="button" class="btn btn-primary" data-dismiss="modal">Close</button><a href="{{i.get_delete_url}}" class="btn btn-danger active" role="button" aria-pressed="true">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+    {% endblock %}
