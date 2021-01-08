@@ -1,0 +1,9 @@
+git init
+git remote add githubRepo https://github.com/memetakcan/boqcreator
+git remote
+-------
+git add .
+git status
+git commit -m ""
+-------
+git push -u githubRepo master
