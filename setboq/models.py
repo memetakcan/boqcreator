@@ -17,7 +17,7 @@ class setboq(models.Model):
     schedulein = models.CharField(max_length=20,choices=Scheduleins,verbose_name="will It Count?",default=None,null=True)
     schtype = models.CharField(max_length=20,choices=Schtypes,default=None,null=True)
     boqdescription = models.TextField(verbose_name="BoQ Description")
-    boqcodes = models.CharField(max_length=20,default=None)
+    boqcodes = models.CharField(max_length=6,default=None)
     objecttype = models.CharField(max_length=20,choices=Objecttpyes,default=None)
     image = models.FileField(null=True, blank=True)
     project = models.CharField(max_length=20,choices=Projects,default=None)
@@ -44,5 +44,5 @@ class setboq(models.Model):
 
 
     class Meta:
-        ordering=["-id"]
+        ordering=["boqcodes"]
 

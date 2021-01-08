@@ -16,4 +16,8 @@ class GetboqForm(forms.ModelForm):
         fields = ["project","category","material","objecttype","schedulein","schtype","project","boqdescription"]
 
 
+class UpdateboqForm(forms.ModelForm):
 
+    class Meta:
+        model = setboq
+        fields = ["project","category","material","objecttype","schedulein","schtype","project","boqdescription"]

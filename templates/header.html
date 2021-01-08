@@ -1,5 +1,5 @@
 <div class="col-lg-12">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="{% url "homesite" %}">Home</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -11,10 +11,13 @@
           <li class="nav-item active">
             <a class="nav-link" href="{% url "setboq:index" %}">BoQ List<span class="sr-only">(current)</span></a>
           </li>
-          {% endif %}
-          <li class="nav-item">
-            <a class="nav-link" href="">About</a>
+          <li class="nav-item active ">
+            <a class="nav-link" href="{% url "setboq:set" %}">CreateBIMobject<span class="sr-only">(current)</span></a>
           </li>
+          <li class="nav-item active ">
+            <a class="nav-link" href="{% url "setboq:get" %}">GetBoQ<span class="sr-only">(current)</span></a>
+          </li>
+          {% endif %}
         </ul>
         <span class="nav navbar-nav navbar-right">
         {% if not request.user.is_authenticated %}
@@ -27,9 +30,8 @@
         {% endif %}
           {% if request.user.is_authenticated %}
               <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" name="q" placeholder="Search on BOQ" aria-label="Search" value="{{ request.GET.q }}">
+            <input class="form-control mr-sm-2" type="search" name="q" placeholder="Search on BoQ List" aria-label="Search" value="{{ request.GET.q }}">
             <button class="btn btn-outline-info my-3 my-sm-0" type="submit">Search</button>
-
             </form>
           <li class="nav-item">
             <a class="nav-link" href="{% url "accounts:logout" %}">Logout</a>

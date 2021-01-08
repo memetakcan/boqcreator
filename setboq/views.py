@@ -7,6 +7,8 @@ from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import string
 import sqlite3
+from .dbmodel import *
+
 abc = string.ascii_lowercase
 
 def set_boq(request):
@@ -26,8 +28,8 @@ def set_boq(request):
             db_boqcodes = []
             for i in data:
                 if i[8] == form.cleaned_data.get("project"):
-                    db_boqdes.append(i[4])
-                    db_boqcodes.append(i[5])
+                    db_boqdes.append(i[5])
+                    db_boqcodes.append(i[10])
             # ------------------------------------------------------------#
             if form.cleaned_data.get("boqcodes") in db_boqcodes:
                 messages.warning(request,"Another BIM Object has this BoQ Codes")
@@ -50,9 +52,14 @@ def delete_boq(request,id):
 
 def index_boq(request):
     a_list = setboq.objects.all()
+    query = request.GET.get("q")
+    if query:
+        a_list = a_list.filter(
+            Q(boqdescription__icontains=query) |
+            Q(boqcodes__icontains=query)
+        ).distinct()
 
-    paginator = Paginator(a_list, 8) # Show 25 contacts per page
-
+    paginator = Paginator(a_list, 15) # Show 15 contacts per page
     page = request.GET.get('page')
     try:
         a = paginator.page(page)
@@ -62,12 +69,8 @@ def index_boq(request):
     except EmptyPage:
         # If page is out of range (e.g. 9999), deliver last page of results.
         a = paginator.page(paginator.num_pages)
-    query = request.GET.get("q")
-    if query:
-        a = a.filter(
-            Q(boqdescription__icontains=query) |
-            Q(boqcodes__icontains=query)
-        ).distinct()
+
+
     return render(request, "getsetboq/index.html", {"r": a})
 
 def update_boq(request,id):
@@ -119,8 +122,8 @@ def get_boq(request):
             db_boqcodes = []
             for i in data:
                 if i[8] == form.cleaned_data.get("project"):
-                    db_boqdes.append(i[4])
-                    db_boqcodes.append(i[5])
+                    db_boqdes.append(i[5])
+                    db_boqcodes.append(i[10])
             # ------------------------------------------------------------#
             k = 1
             while True:
